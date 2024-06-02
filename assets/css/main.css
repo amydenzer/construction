@@ -2909,3 +2909,11 @@ ol li{
   justify-content: center; 
   align-items: center;           
 }
+
+.service-item .bi-check2 {
+  color: var(--accent-color);
+}
+
+.feature-item .bi-check2 {
+  color: var(--accent-color);
+}
