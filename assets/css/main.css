@@ -2894,3 +2894,18 @@ section,
 ol li{
   font-size: 14px;
 }
+
+#cta {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  border: 0;
+  padding: 10px 30px;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;           
+}
