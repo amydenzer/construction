@@ -38,6 +38,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->AltBody = $message;
 
     $mail->send();
+
+    // Send confirmation email to user
+    $confirmationMail = new PHPMailer(true);
+    $confirmationMail->isSMTP();
+    $confirmationMail->Host = 'smtp.gmail.com';
+    $confirmationMail->SMTPAuth = true;
+    $confirmationMail->Username = 'leosglasswindowsdoors@gmail.com';
+    $confirmationMail->Password = 'nhzj pvas atgx pejk';
+    $confirmationMail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $confirmationMail->Port = 587;
+    
+    $confirmationMail->setFrom('leosglasswindowsdoors@gmail.com', 'Leo\'s Glass Windows & Doors');
+    $confirmationMail->addAddress($email, $name); // Send to user's email
+    
+    $confirmationMail->isHTML(true);
+    $confirmationMail->Subject = 'Confirmation: We have received your message';
+    $confirmationMail->Body    = 'Dear ' . $name . ',<br><br>Thank you for reaching out to us. We have received your message and will get back to you shortly.<br><br>Best regards,<br>Leo\'s Glass Windows & Doors';
+    $confirmationMail->AltBody = 'Dear ' . $name . ',\n\nThank you for reaching out to us. We have received your message and will get back to you shortly.\n\nBest regards,\nLeo\'s Glass Windows & Doors';
+
+    $confirmationMail->send();
+    
     echo 'OK'; // This should be 'OK' for the JS to recognize success
   } catch (Exception $e) {
     error_log("Mailer Error: {$mail->ErrorInfo}");
